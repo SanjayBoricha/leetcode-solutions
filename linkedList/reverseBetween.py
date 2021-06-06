@@ -7,31 +7,41 @@ class ListNode:
 
 
 class Solution:
+    # Time: O(n), Space: O(1)
     def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
-        node = head
-        leftNode = None
-        prevNode = head
+        current_pos = 1
+        current_node = head
+        start = head
 
-        while (node):
-            if(node.val == left):
-                leftNode = prevNode
+        while(current_pos < left):
+            start = current_node
+            current_node = current_node.next
+            current_pos += 1
 
-            if(node.val == right):
-                next_node = leftNode.next
-                leftNode.next = node
-                node.next = next_node
+        new_list = None
+        tail = current_node
 
-            prevNode = node
-            node = node.next
+        while(current_pos >= left and current_pos <= right):
+            next_node = current_node.next
+            current_node.next = new_list
+            new_list = current_node
+            current_node = next_node
+            current_pos += 1
 
-        return head
+        start.next = new_list
+        tail.next = current_node
+
+        if(left > 1):
+            return head
+
+        return new_list
 
 
 def linkedListToArray(head):
     arr = []
     node = head
 
-    while(node):
+    while(node != None):
         arr.append(node.val)
         node = node.next
 
