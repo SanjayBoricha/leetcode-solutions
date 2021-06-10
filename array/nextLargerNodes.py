@@ -8,32 +8,33 @@ class ListNode:
 
 
 class Solution:
-    def createStackFromLinkedList(self, node: ListNode) -> list:
-        stack = []
-
-        while node:
-            stack.append(node.val)
-            node = node.next
-
-        return stack
-
     def nextLargerNodes(self, head: ListNode) -> list:
-        stack = self.createStackFromLinkedList(head)
+        prev = None
+        current = head
 
-        nextLargests = []
+        while current:
+            n = current.next
+            current.next = prev
+            prev = current
+            current = n
 
-        for i in range(len(stack)):
-            found = False
-            for j in range(i, len(stack)):
-                if(stack[j] > stack[i]):
-                    nextLargests.append(stack[j])
-                    found = True
-                    break
+        a = []
+        s = []
+        current = prev
 
-            if not found:
-                nextLargests.append(0)
+        while current:
+            x = current.val
+            while s and s[-1] <= x:
+                s.pop()
 
-        return nextLargests
+            if s:
+                a.append(s[-1])
+            else:
+                a.append(0)
+                s.append(x)
+                current = current.next
+
+        return a[::-1]
 
 
 def arrayToLinkedList(arr):
