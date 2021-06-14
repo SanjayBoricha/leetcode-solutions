@@ -7,6 +7,7 @@ class Node:
 
 
 class Solution:
+    # Time: O(n), Space: O(1)
     def flatten(self, head: 'Node') -> 'Node':
         if not head:
             return head
