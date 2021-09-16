@@ -34,3 +34,10 @@ class Solution:
         if node.right:
             # call travel method on right node with current level + 1
             self.travel(node.right, array, (level + 1))
+
+
+rootNode = TreeNode(3,  TreeNode(6, TreeNode(9, None, TreeNode(
+    5, TreeNode(8))), TreeNode(2)), TreeNode(1, None, TreeNode(4)))
+
+
+print(Solution().levelOrder(rootNode))
