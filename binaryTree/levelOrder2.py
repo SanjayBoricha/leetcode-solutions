@@ -39,7 +39,19 @@ def levelOrder(root: TreeNode) -> list:
     return result
 
 
-rootNode = TreeNode(3,  TreeNode(6, TreeNode(9, None, TreeNode(
+rootNode = TreeNode(3, TreeNode(6, TreeNode(9, None, TreeNode(
     5, TreeNode(8))), TreeNode(2)), TreeNode(1, None, TreeNode(4)))
+
+"""
+            3
+          /   \
+        6       1
+      /   \        \
+    9       2        4
+      \
+        5
+      /
+    8
+"""
 
 print(levelOrder(rootNode))
